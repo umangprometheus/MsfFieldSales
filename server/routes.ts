@@ -20,6 +20,7 @@ import type {
   BuildRouteRequest, 
   CheckInRequest,
   RouteStop,
+  RouteStopApi,
   loginSchema
 } from "@shared/schema";
 

@@ -82,7 +82,7 @@ function greedyOptimize(
     let nearest = -1;
     let nearestDist = Infinity;
 
-    for (const idx of unvisited) {
+    for (const idx of Array.from(unvisited)) {
       const coord = coordinates[idx];
       const dist = Math.sqrt(
         Math.pow(coord.lat - current.lat, 2) + Math.pow(coord.lng - current.lng, 2)

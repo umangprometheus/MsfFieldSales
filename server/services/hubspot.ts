@@ -99,30 +99,9 @@ export async function createFieldVisitCheckIn(
 
     console.log(`✅ Created field visit custom object ${customObjectResponse.id}`);
     
-    // Optionally try to create association (non-blocking)
-    // This will fail silently if association type ID is not configured
-    const associationTypeId = process.env.HUBSPOT_FIELD_VISIT_ASSOCIATION_TYPE_ID;
-    if (associationTypeId) {
-      try {
-        await client.crm.associations.batchApi.create("field_visits", "companies", {
-          inputs: [
-            {
-              from: { id: customObjectResponse.id },
-              to: { id: companyId },
-              types: [
-                {
-                  associationCategory: "HUBSPOT_DEFINED" as any,
-                  associationTypeId: parseInt(associationTypeId),
-                },
-              ],
-            },
-          ],
-        });
-        console.log(`✅ Associated field visit ${customObjectResponse.id} with company ${companyId}`);
-      } catch (assocError) {
-        console.warn("Could not create field visit → company association (non-fatal):", assocError);
-      }
-    }
+    // Note: Automatic associations between field_visits and companies
+    // can be configured in HubSpot UI or via separate API call if needed
+    // Skipping automatic association for now - company_id is stored in properties
 
     return customObjectResponse.id;
   } catch (error: any) {
