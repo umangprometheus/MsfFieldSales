@@ -45,8 +45,8 @@ export default function MapView({
 
     // Check if Mapbox token is available
     if (!mapboxgl.accessToken) {
-      setMapError("Mapbox token not configured");
-      console.error("[MapView] MAPBOX token missing!");
+      setMapError("Map visualization not available - Mapbox API key not configured. Routes will still work!");
+      console.warn("[MapView] MAPBOX token missing - map disabled, route planning still functional");
       return;
     }
 
@@ -478,9 +478,13 @@ export default function MapView({
       {mapError && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted/90 backdrop-blur-sm z-50">
           <div className="text-center p-6 max-w-md">
-            <p className="text-lg font-semibold text-destructive mb-2">Map Error</p>
+            <p className="text-lg font-semibold mb-2">ℹ️ Map Disabled</p>
             <p className="text-sm text-muted-foreground">{mapError}</p>
-            <p className="text-xs text-muted-foreground mt-4">Check browser console for details</p>
+            {mapError.includes("not configured") && (
+              <p className="text-xs text-muted-foreground mt-4">
+                Your app works fully without maps - you can still plan routes, check in, and view summaries.
+              </p>
+            )}
           </div>
         </div>
       )}
