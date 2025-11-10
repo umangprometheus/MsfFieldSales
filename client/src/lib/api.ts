@@ -53,7 +53,9 @@ export function useCompanies(params: {
   return useQuery<{ companies: CompanyWithDistance[] }>({
     queryKey: ["/api/companies", params],
     queryFn: async () => {
-      const response = await fetch(`/api/companies?${queryParams}`);
+      const response = await fetch(`/api/companies?${queryParams}`, {
+        credentials: "include",
+      });
       if (!response.ok) throw new Error("Failed to fetch companies");
       return response.json();
     },
@@ -118,7 +120,9 @@ export function useSummary(date: string) {
   return useQuery<SummaryResponse>({
     queryKey: ["/api/summary", date],
     queryFn: async () => {
-      const response = await fetch(`/api/summary?date=${date}`);
+      const response = await fetch(`/api/summary?date=${date}`, {
+        credentials: "include",
+      });
       if (!response.ok) throw new Error("Failed to fetch summary");
       return response.json();
     },
