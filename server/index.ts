@@ -1,19 +1,11 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { startPeriodicSync } from "./services/sync";
+import { seedDemoCompanies } from "./seed-data";
 
 const app = express();
-
-declare module 'http' {
-  interface IncomingMessage {
-    rawBody: unknown
-  }
-}
-app.use(express.json({
-  verify: (req, _res, buf) => {
-    req.rawBody = buf;
-  }
-}));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
@@ -75,7 +67,15 @@ app.use((req, res, next) => {
     port,
     host: "0.0.0.0",
     reusePort: true,
-  }, () => {
+  }, async () => {
     log(`serving on port ${port}`);
+    
+    // Seed demo companies for testing
+    await seedDemoCompanies();
+    
+    // Start periodic HubSpot sync (every 15 minutes)
+    // Note: Sync is conservative to stay well within Mapbox free tier
+    // Mapbox free: 100k geocoding/month = ~200/day safe limit
+    startPeriodicSync(15);
   });
 })();

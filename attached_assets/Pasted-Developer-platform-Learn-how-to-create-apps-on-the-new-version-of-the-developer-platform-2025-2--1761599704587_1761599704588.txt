@@ -1,0 +1,45 @@
+Developer platform
+Learn how to create apps on the new version of the developer platform (2025.2).
+
+Last modified: September 3, 2025
+HubSpot’s new developer platform, version 2025.2, provides multiple advantages over legacy private and public apps, including a new file-based build-and-deploy framework. This framework contains an app’s configuration, assets, and other source code.
+​
+Continued support for legacy apps
+Although building apps on version 2025.2 of the developer platform is recommended to take advantage of the latest app features, legacy private apps and public apps are still fully supported and actively maintained by HubSpot.
+All REST APIs are available to query via a private app access token or public app OAuth token.
+Unless otherwise noted, any previous extensions you’ve built using legacy apps are also still supported.
+2025.2 apps are created and deployed via the HubSpot CLI. If you’re less familiar with using the CLI and you only need an access token for a few HubSpot APIs, you may want to create a legacy private app.
+Access legacy apps in your account
+
+You can also migrate an existing legacy app to version 2025.2.
+​
+Create an app
+The app creation guide walks you through how to get up and running with a proof-of-concept app that uses a boilerplate example project and schema definition. You can then upload the associated configuration files to a project in your developer account, and test out an install using a developer test account.
+The app creation article linked above provides a full setup guide to customize and deploy a new app using the hs project create command.
+If you’re new to building apps on HubSpot, check out the quickstart guide that will get you up and running with a demo app using the streamlined hs get-started command.
+​
+Migration guides
+If you have an existing app built using a project on the old version of the developer platform, you can migrate the app to the new version of the platform by following one of the guides below:
+Manually migrate an existing private app
+Automatically migrate an existing public app
+​
+App configuration
+Whether you’re starting from scratch with the quickstart guide, creating an app using the full setup guide, or migrating an existing legacy app, you can consult the app configuration reference article for details on all available fields in your app’s top-level app-hsmeta.json schema file.
+​
+Features
+Once you’ve got your new app up and running, you can add features such as app cards and webhooks. The features available to an app depend on the app’s distribution and authentication configuration, as shown in the table below.
+Feature	Static token	OAuth
+Private	Private	Marketplace
+API calls	
+Agent tools	
+App cards	
+App home	
+App events	
+App objects	
+App settings	
+Custom workflow actions	
+Public functions for CMS	
+SCIM	
+Telemetry	
+Webhooks v3	
+Webhooks v4	

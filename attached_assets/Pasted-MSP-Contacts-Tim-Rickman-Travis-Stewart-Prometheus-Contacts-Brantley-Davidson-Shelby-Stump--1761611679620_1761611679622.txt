@@ -1,0 +1,146 @@
+MSP Contacts: Tim Rickman, Travis Stewart 
+Prometheus Contacts: Brantley Davidson, Shelby Stump
+
+SUMMARY:
+MSP Diesel Solutions is partnering with Prometheus Agency to design, develop, and deploy a Route Management Application. This mobile-friendly web application will connect directly with HubSpot CRM to help field sales representatives plan, execute, and log customer visits with greater accuracy and efficiency.
+The application will:
+Integrate bi-directionally with HubSpot CRM
+Identify nearby accounts through GPS or a specified city
+Generate optimized travel routes using AI logic
+
+OBJECTIVES:
+Empower field sales representatives with a map-based interface that recommends optimal routes and simplifies daily planning.
+Improve data accuracy through automated, location-verified activity logging in HubSpot.
+Increase leadership visibility into territory coverage and visit frequency.
+Maximize ROI on HubSpot by leveraging existing CRM data for real-time decision-making.
+
+ACTIVITIES & DELIVERABLES:
+
+
+Requirements Definition and Architecture Design
+Conduct project kickoff and stakeholder alignment meeting
+Review product requirements and 
+Map HubSpot data structure (Companies, Contacts, Activities)
+Define HubSpot API endpoints, data flow, and sync logic
+Design system architecture on Google Cloud Platform (frontend, backend, authentication, data storage)
+Define integration approach and authentication method 
+Review and approve requirements with client stakeholders
+Deliverables
+Finalized Functional and Technical Requirements Document
+HubSpot Data Model and API Mapping Sheet
+GCP Architecture Diagram and Technical Architecture Summary
+Integration and Authentication Plan
+Success Criteria and Acceptance Testing Plan
+Proof of Concept (UI/UX Prototype)
+Translate functional flow into wireframes and user journeys
+Build mobile-first Figma prototype with navigation logic
+Design key screens:
+Login and Authentication
+Map View and Radius Filter
+Route Suggestion Screen
+Check-In Notification and Confirmation
+Daily Summary View
+Conduct stakeholder walkthrough and collect feedback
+Revise prototype based on client input and finalize for approval
+Deliverables
+Clickable Prototype (Mobile-First)
+Visual Design Mockups and User Flow Diagrams
+Stakeholder Feedback Summary and Iteration Log
+Approved Final UI/UX Prototype
+Development (Google Cloud Platform)
+Set up GCP environment (App Engine or Cloud Run, Firestore or SQL backend)
+Implement HubSpot integration for two-way sync (Companies, Addresses, Activities)
+Develop GPS detection and manual city/radius input functionality
+Build AI-driven route optimization logic
+Implement automated check-in and HubSpot activity logging
+Develop end-of-day route summary and reporting view
+Configure secure authentication
+Conduct internal QA and integration testing
+Prepare API and admin documentation
+Deliverables
+Fully Deployed MVP Environment on GCP
+Application Source Code and Environment Configuration
+API and Integration Documentation
+Rollout, QA, and Training
+Conduct user acceptance testing (UAT) with MSP Diesel Solutions sales team
+Address bugs and finalize stability improvements
+Deploy production version of the Route Management Application
+Host live training session and provide recorded playback for future use
+Monitor application during 14-day post-launch support window
+Conduct closeout meeting and handoff documentation review
+Deliverables
+Completed UAT and Bug Resolution Report
+Production Deployment of Route Management Application
+Live and Recorded Training Sessions
+Post-Launch Support Summary and Project Closeout Report
+ASSUMPTIONS & EXCLUSIONS
+The following items are not included in the MVP but will be documented for future development:
+AI-powered account prioritization
+Voice-to-text note capture
+HubSpot-embedded analytics dashboard
+Offline mode for rural use
+REQUIRED INVESTMENT
+The Route Management Application will be developed under a one-time setup fee of $15,000, which includes requirements definition, UI/UX design, development, rollout, and training.
+Following launch, ongoing costs will consist solely of monthly usage and hosting fees, which are anticipated to range between $40 and $60 per month, depending on API activity and user volume.
+INTELLECTUAL PROPERTY & LICENSING: 
+These ownership and licensing terms are designed to protect Prometheus’s reusable intellectual property while ensuring MSP retains full control and commercial benefit from its custom-built platform and data.
+
+Ownership of Core Platform IP
+All proprietary software, libraries, code, AI agents, orchestration frameworks, models, prompt logic, workflows, templates, and integration structures developed or used by Prometheus (collectively, the “Prometheus Platform”) are and shall remain the exclusive property of Prometheus Agency, LLC.
+Nothing in this Scope of Work grants or conveys ownership of the Prometheus Platform, its source code, or derivative works to the Client.
+Client Deliverables and Use Rights
+Upon completion and acceptance of the deliverables, MSP is granted a non-exclusive, non-transferable, perpetual license to use the delivered software and its custom configuration for internal business operations.
+This license includes full access to the features, dashboards, and workflows described in this SOW, and ownership of all Client Data, including records, reports, media, and configurations generated through system use.
+The license does not include ownership of the Prometheus Platform source code, AI orchestration logic, or any reusable core component.
+Hosting, Support, and Usage
+Future enhancements will be scoped via Change Order. Hosting, licensing, and AI token usage will be governed separately under a Licensing & Usage Agreement.
+The software and AI services will be hosted within Prometheus’s managed cloud environment.
+Continued access to hosted AI features, API connections, and model orchestration requires an active Licensing & Usage Agreement.
+If that agreement lapses or is terminated, access to hosted components will be suspended, though Client Data remains exportable for a 60-day period following termination, as defined in the Licensing & Platform Services Agreement.
+Hosting and support fees are not included in this SOW and will be governed separately via a change order. Hosting and support fees, including token costs, are subject to change based on variable changes in model costs and overall product evolution.
+Data Ownership and Use
+All data provided by MSP or generated through its operations—including technician reports, images, voice transcripts, and performance metrics (“Client Data”)—remains the exclusive property of MSP.
+Prometheus may process and temporarily use Client Data solely to train, fine-tune, or optimize AI models deployed for MSP’s individual environment (the “Client Model”).
+Prometheus will not use, share, or commingle Client Data to train or enhance models for any other client or commercial product without MSP’s written consent.
+Data Security and Continuity
+Prometheus will maintain commercially reasonable data security and confidentiality standards.
+If the relationship between the parties ends, Prometheus will provide MSP with an export of all Client Data and the trained model parameters derived from that data. MSP may retain and reuse these model parameters within its own environment for internal purposes, independent of Prometheus’s platform.
+The Prometheus orchestration framework, agents, and supporting infrastructure are not transferable and will not be included in this export.
+Derivative Works and Improvements
+Any derivative works, updates, or enhancements to the Prometheus Platform created during or after this engagement remain the sole property of Prometheus.
+Client-specific configurations, branding, and workflows are licensed for internal use but may not be redistributed or sublicensed.
+
+Summary of Ownership:
+
+
+Asset Type
+Owner
+Usage / Transfer Rights
+Custom Application Code (Web App, UI, Workflows, and Business Logic)
+MSP 
+Granted full and perpetual use of the delivered application, including the right to self-host, operate, and modify for internal use. Prometheus retains underlying intellectual property rights in the codebase, frameworks, and development patterns used to build the application, and may reuse or adapt such elements for other projects, provided no Client Data or proprietary business logic unique to MSP is disclosed.
+
+MSP may export and redeploy the delivered application independently; however, Prometheus retains intellectual property rights in reusable code, architecture patterns, and framework logic used to build it.
+Prometheus AI Orchestration Layer (Agents, Models, Prompt Logic, Frameworks)
+Prometheus Agency, LLC
+Licensed for use within MSP’s platform; cannot be transferred, copied, or used outside of Prometheus infrastructure. Access ends if license/support agreement terminates.
+Client Data (Reports, Images, Transcripts, Historical Records)
+MSP 
+Full ownership; always exportable. Prometheus may not reuse or commingle with other client data.
+
+Upon termination of services, Prometheus’s access to Client Data will cease, and all data will be permanently deleted or anonymized upon written request.
+Client-Trained Model Instance (AI tuned on MSP’s data)
+MSP 
+Exclusive use; may be exported or migrated if the relationship ends. Prometheus may not reuse or commercialize this model
+Hosting Infrastructure, APIs, and Managed Services
+Prometheus Agency, LLC
+Provided under active Licensing & Usage Agreement. Access ends upon termination.
+Documentation, Training Materials, and Implementation Assets
+Shared Ownership
+MSP may retain copies for internal use; Prometheus retains rights to underlying templates and frameworks.
+
+
+
+
+BILLING PROCESS: MSP to pay for 100% of project costs upon signature. Ongoing usage fees to be billed on a monthly basis following launch. 
+

@@ -1,119 +1,210 @@
-# MSF Field Sales Application - Design Guidelines
+# MSP Diesel Field Sales Route App - Design Guidelines
 
 ## Design Approach
-**Selected System**: Material Design with Carbon Design influences for data-heavy components
-**Rationale**: Enterprise productivity tool requiring clear information hierarchy, efficient data input, and mobile-responsive design for field teams
 
-## Core Design Principles
-1. **Efficiency First**: Minimize clicks to complete tasks, prioritize speed of data entry
-2. **Mobile-Optimized**: Field sales teams work on-the-go - touch-friendly, thumb-reachable navigation
-3. **Data Clarity**: Clear visual hierarchy for scanning large datasets quickly
-4. **Progressive Disclosure**: Show critical info first, details on demand
+**System-Based Approach**: Drawing from Linear's clean functionality, Google Maps' mobile map patterns, and modern mobile-first productivity tools. This is a utility-focused field application requiring clarity, efficiency, and mobile optimization for outdoor use.
 
-## Typography System
-- **Primary Font**: Inter (via Google Fonts CDN)
-- **Headings**: 
-  - H1: text-3xl font-bold (Dashboard titles)
-  - H2: text-2xl font-semibold (Section headers)
-  - H3: text-xl font-medium (Card titles, Form sections)
-- **Body**: text-base font-normal (Default content)
-- **Labels**: text-sm font-medium uppercase tracking-wide (Form labels, table headers)
-- **Data/Numbers**: text-lg font-semibold tabular-nums (Metrics, statistics)
+**Core Principles**:
+- Mobile-first, one-handed operation priority
+- Map-centric interface with contextual overlays
+- High contrast for outdoor visibility
+- Instant visual feedback for proximity events
+- Minimal cognitive load during driving
+
+---
+
+## Color Palette
+
+### Light Mode (Primary for Outdoor Use)
+- **Primary**: 220 90% 45% (Deep blue for trust/reliability)
+- **Primary Hover**: 220 90% 38%
+- **Surface**: 0 0% 100% (Pure white for maximum outdoor readability)
+- **Surface Secondary**: 220 15% 97%
+- **Border**: 220 20% 88%
+- **Text Primary**: 220 25% 15%
+- **Text Secondary**: 220 15% 45%
+- **Success**: 142 75% 42% (Check-in confirmation)
+- **Warning**: 38 92% 50% (Proximity alerts)
+- **Danger**: 0 85% 55%
+
+### Dark Mode (Driving/Low Light)
+- **Primary**: 220 85% 60%
+- **Surface**: 220 20% 12%
+- **Surface Secondary**: 220 18% 16%
+- **Border**: 220 15% 25%
+- **Text Primary**: 220 10% 95%
+- **Text Secondary**: 220 10% 65%
+
+---
+
+## Typography
+
+**Font Stack**: 
+- Primary: 'Inter' (Google Fonts) - exceptional readability at small sizes
+- Monospace: 'JetBrains Mono' (for coordinates/technical data)
+
+**Scale**:
+- Hero/Page Titles: text-2xl font-bold (24px)
+- Section Headers: text-lg font-semibold (18px)
+- Body: text-base font-normal (16px)
+- Secondary: text-sm font-normal (14px)
+- Captions: text-xs font-medium (12px)
+
+**Usage**:
+- Map overlays: font-semibold for visibility
+- Lists: font-medium for company names
+- Metadata: text-sm text-secondary
+
+---
 
 ## Layout System
-**Spacing Units**: Use Tailwind units of 4, 6, 8, 12, 16 for consistency
-- Component padding: p-4 to p-6
-- Section spacing: space-y-8
-- Card gaps: gap-6
-- Form field spacing: space-y-4
 
-**Grid Structure**:
-- Desktop: Two-column split (sidebar + main content)
-- Dashboard cards: grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-- Data tables: Full-width with horizontal scroll
-- Mobile: Single column stack, bottom navigation
+**Spacing Primitives**: Use Tailwind units of 3, 4, 6, 8, 12 for consistent rhythm
+- Compact spacing: p-3, gap-3
+- Standard spacing: p-4, gap-4, m-6
+- Section spacing: p-6, py-8
+- Large spacing: p-12 (desktop only)
+
+**Container Strategy**:
+- Full-bleed map views
+- Content overlays: max-w-md mx-auto p-4
+- Lists: max-w-2xl with p-4
+- Bottom sheets: rounded-t-2xl with safe-area-inset
+
+---
 
 ## Component Library
 
-### Navigation
-- **Desktop**: Fixed left sidebar (w-64) with collapsible option
-- **Mobile**: Bottom tab bar (fixed bottom) with 4-5 primary actions
-- **Structure**: Logo top, main nav items, user profile bottom
-- Use Heroicons for all navigation icons
+### Map Interface
+- Full-viewport map (Mapbox GL)
+- Floating UI overlays with backdrop-blur-md
+- Custom markers: company pins (blue), current location (pulsing blue ring), route waypoints (numbered)
+- Route polyline: 4px width, primary color with 80% opacity
 
-### Dashboard Cards
-- Elevated cards with subtle shadow
-- Header: Icon + Title + Action button
-- Body: Key metric (large, bold) + trend indicator + sparkline chart placeholder
-- Grid layout: 3 columns on desktop, 2 on tablet, 1 on mobile
+### Navigation/Header
+- Fixed top bar: h-14 with backdrop-blur-lg bg-white/90
+- Logo/app name left, profile/settings right
+- Search bar integration on planning view
+- Safe area padding for mobile notch
 
-### Data Tables
-- Sticky header row
-- Alternating row background for readability
-- Row actions: Icon buttons (right-aligned)
-- Sortable columns with arrow indicators
-- Pagination at bottom
-- Mobile: Convert to card-based list view
+### Company List Cards
+- White cards with shadow-sm hover:shadow-md transition
+- Company name: text-base font-semibold
+- Distance badge: absolute top-3 right-3, pill-shaped with success color
+- Address: text-sm text-secondary
+- Touch target: min-h-[72px] with active:bg-gray-50
 
-### Forms
-- Single-column layout (max-w-2xl)
-- Grouped related fields with dividers
-- Floating labels or top-aligned labels
-- Required field indicators (*)
-- Inline validation messages
-- Primary action button: Full-width on mobile, auto on desktop
-- Secondary actions: Text links below primary button
+### Route Panel
+- Step-by-step list with connecting lines
+- Current stop: highlighted with primary background
+- Completed: opacity-60 with checkmark
+- ETA badges: text-xs bg-gray-100 rounded-full px-2
 
-### Customer/Lead Cards
-- Compact card design with avatar/initial circle
-- Name, company, last contact date
-- Status badge (top-right corner)
-- Quick actions: Call, Email, Notes icons
-- Swipeable on mobile for quick actions
+### Proximity Alert (Check-In Prompt)
+- Bottom sheet: slides up from bottom with spring animation
+- Bold company name with location icon
+- Large primary CTA: "Check In" (h-12 w-full)
+- Secondary actions: "Skip" text button
+- Backdrop: bg-black/40
 
-### Route Planning View
-- Map integration placeholder (full-height container)
-- Floating action button for "Start Route"
-- Bottom sheet with customer list
-- Timeline view showing visit schedule
+### Check-In Form
+- Full-screen modal with close button
+- Company header with map thumbnail
+- Textarea: min-h-[120px] for notes
+- Timestamp display: text-sm font-mono
+- GPS coordinates: text-xs font-mono text-secondary
 
-### Reporting Dashboard
-- Date range selector (top-right)
-- KPI cards row (4 metrics across)
-- Charts section: Bar/line chart placeholders
-- Filterable data table below
+### Summary Dashboard
+- Card-based metrics: 3 columns on desktop, stack on mobile
+- Visit count, total miles, time stats
+- Timeline list: chronological check-ins with mini-map pins
+- Export button: outline variant top-right
 
-## Mobile-Specific Patterns
-- Bottom sheet modals for forms/details
-- Sticky action buttons (floating or bottom bar)
-- Swipe gestures for card actions
-- Pull-to-refresh on lists
-- Thumb-zone consideration: Primary actions in bottom 1/3 of screen
+### Bottom Navigation (Mobile)
+- Fixed bottom: h-16 with 4 items
+- Icons: 24px size, active state with primary color + label
+- Safe area bottom padding
+- Items: Plan, Route, History, Profile
 
-## Animations
-**Minimal and Purposeful**:
-- Page transitions: Simple fade (150ms)
-- Card hover: Subtle lift shadow
-- Button press: Scale down slightly
-- NO scroll animations or parallax
+---
 
-## Images
-This is a data-focused enterprise application - images are minimal:
-- **User Avatars**: Circular, 40px default size, fallback to initials
-- **Company Logos**: Small, contained in cards where relevant
-- **Empty States**: Simple illustrations for "No data" states
-- NO hero images or decorative photography
+## Interaction Patterns
 
-## Status Indicators
-- Use color-coded badges: Success (green), Warning (yellow), Error (red), Info (blue)
-- Pill-shaped with subtle background
-- Icon + text for clarity
+### Proximity Detection
+- Visual pulse animation on map marker when within 250m
+- Bottom sheet auto-slides up with haptic feedback (if supported)
+- Audio chime option for drivers
+
+### Route Building
+- Drag-to-reorder stops (desktop)
+- Swipe actions on mobile: swipe left to remove stop
+- Optimize toggle: switch component with loading state
+
+### Map Controls
+- Floating action buttons: bottom-right cluster
+- Recenter GPS: circular button with location icon
+- Zoom controls: +/- stacked buttons
+- Layer toggle: satellite/streets
+
+### Loading States
+- Skeleton screens for company lists
+- Inline spinners for route optimization
+- Progress bar for HubSpot sync
+
+---
+
+## Mobile-Specific Guidelines
+
+**Touch Targets**: Minimum 44px height for all interactive elements
+
+**One-Handed Reach**: 
+- Primary actions in bottom 40% of screen
+- Critical buttons within thumb zone
+- Top nav minimal (status only)
+
+**Orientation**: 
+- Portrait primary
+- Landscape: split view (map left, list right) on tablets
+
+**Performance**:
+- Lazy load company cards (virtualized lists)
+- Map marker clustering above 50 items
+- Debounced GPS updates (2-3 second intervals)
+
+---
 
 ## Accessibility
-- Minimum touch target: 44px × 44px
-- High contrast text (WCAG AA minimum)
-- Focus indicators on all interactive elements
-- Aria labels for icon-only buttons
-- Form error announcements
 
-This design creates a professional, efficient tool that prioritizes the field sales team's productivity while maintaining clarity across devices.
+- High contrast mode toggle
+- Large text support (up to 200% zoom)
+- ARIA labels on all map markers
+- Keyboard navigation for route planning (desktop)
+- VoiceOver announcements for proximity events
+- Color-blind safe palette (avoid red/green only indicators)
+
+---
+
+## Images
+
+**No hero images required** - this is a utility app, not marketing
+
+**Functional Images**:
+- Map tiles: Mapbox Streets style (light mode), Navigation Night (dark mode)
+- Company logos: 32px circular avatars in list view (optional, fallback to initials)
+- Empty states: Simple line illustrations for "no routes" or "no companies nearby"
+- Profile photos: 40px circular for user avatar
+
+---
+
+## Animation Budget
+
+**Essential Only**:
+- Proximity alert slide-up: 300ms ease-out
+- Route step transitions: 200ms fade
+- Button press: 100ms scale(0.97)
+- Map marker pulse: infinite 2s for current location
+
+**Avoided**:
+- Page transitions (instant for speed)
+- Decorative effects
+- Scroll-triggered animations

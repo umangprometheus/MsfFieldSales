@@ -1,0 +1,136 @@
+MSP Diesel Field Sales Route App - Complete Cost Breakdown (2025)
+
+SERVICE,METRIC,1 REP,5 REPS,10 REPS,20 REPS,FREE TIER LIMIT,COST AFTER FREE TIER,NOTES
+
+MAPBOX API,,,,,,,,
+,Directions API (daily),1-2 calls,5-10 calls,10-20 calls,20-40 calls,Included in free tier,Typically free,"1 call per route created, regardless of stops"
+,Directions API (monthly),30-60 calls,150-300 calls,300-600 calls,600-1200 calls,Included in free tier,Typically free,Well within free tier limits
+,Geocoding API (daily - NEW companies only),0-3 calls,0-10 calls,0-15 calls,0-30 calls,3333 calls/day,$0.75 per 1k after 100k/month,"Only for companies without cached coordinates"
+,Geocoding API (monthly - NEW companies only),0-50 calls,0-100 calls,0-200 calls,0-400 calls,100000 calls/month,$0.75 per 1k,"After initial sync, minimal usage"
+,"⚠️ CRITICAL: Geocoding with MemStorage (on restart)","500+ calls","500+ calls","500+ calls","500+ calls",3333 calls/day,$0.75 per 1k,"⚠️ Server restart re-geocodes ALL companies! Use PostgreSQL to avoid"
+,Map Tiles (daily),10-20 loads,50-100 loads,100-200 loads,200-400 loads,6666 loads/day,~$6 per 1k views,For viewing routes on map
+,Map Tiles (monthly),300-600 loads,1500-3000 loads,3000-6000 loads,6000-12000 loads,200000 loads/month,~$6 per 1k views,Only 1-6% of free tier used
+,MONTHLY COST (stable server),$0,$0,$0,$0,N/A,N/A,All usage well within free tier
+,MONTHLY COST (with restarts),$0-5,$0-10,$5-20,$10-40,N/A,N/A,"⚠️ Risk of exceeding free tier - add database!"
+
+REPLIT DEPLOYMENT,,,,,,,,
+,Deployment Type,Autoscale,Autoscale,Autoscale,Reserved VM,N/A,N/A,Recommendation based on team size
+,Estimated Monthly Cost,$1-3,$3-8,$8-15,$20-40,N/A,N/A,"Autoscale: ~$1.05 base + usage, Reserved: $20-40 flat"
+,Compute Units,Minimal,Low,Moderate,Predictable,Varies by plan,Usage-based,PWA is lightweight - minimal compute needed
+,Bandwidth,<1GB,1-5GB,5-10GB,10-20GB,Plan dependent,$0.10 per GB (static),Data transfer costs
+,Recommended Plan,Free + Core credits,Core ($25 credits/mo),Core ($25 credits/mo),Teams ($40/user credits),N/A,N/A,Core credits cover most usage
+,PostgreSQL Database,$5,$5-10,$10-15,$15-20,N/A,N/A,"Replit Postgres - HIGHLY RECOMMENDED"
+,MONTHLY COST (hosting + database),$6-8,$8-18,$18-30,$35-60,N/A,N/A,"Total Replit costs with PostgreSQL"
+
+GOOGLE CLOUD PLATFORM (GCP) ALTERNATIVE,,,,,,,,
+,Cloud Run (API server),~$5,~$8,~$12,~$20,N/A,Usage-based,"Serverless container, auto-scale 0-10 instances, 512MB RAM, 1 vCPU"
+,Cloud SQL PostgreSQL (with PostGIS),$7-10,$10-15,$15-25,$25-35,N/A,Instance-based,"db-f1-micro to db-g1-small, automated backups, 7-day retention"
+,Cloud Storage + CDN,$1-2,$2-3,$3-5,$5-8,N/A,$0.10/GB + $0.08/GB CDN,"Static assets (PWA bundle, service worker)"
+,Secret Manager,$0.30,$0.30,$0.30,$0.30,N/A,$0.06/secret/month,"3-5 secrets (Mapbox, HubSpot tokens, session key)"
+,Cloud Scheduler,$0.10,$0.10,$0.10,$0.10,N/A,$0.10/job/month,"Background job for HubSpot sync (every 15min)"
+,Cloud Build (CI/CD),$0-2,$0-2,$2-5,$5-10,N/A,120 build-minutes/day free,"Automated deployments from GitHub"
+,Cloud Logging + Monitoring,$0-1,$1-2,$2-5,$5-10,N/A,50GB logs/month free,"Application logs, error tracking, alerts"
+,MONTHLY COST (GCP total),$13-20,$21-30,$34-52,$60-83,N/A,N/A,"Total GCP infrastructure costs"
+
+HUBSPOT CRM INTEGRATION,,,,,,,,
+,Integration Model,Client API Access,Client API Access,Client API Access,Client API Access,N/A,N/A,"✅ App connects to clients' existing HubSpot accounts"
+,API Calls (daily),10-30 calls,50-150 calls,100-300 calls,200-600 calls,100000 calls/day,Client's quota,"Sync every 15min + check-in logging via client's API"
+,API Calls (monthly),300-900 calls,1500-4500 calls,3000-9000 calls,6000-18000 calls,~3M calls/month (100k/day),Client's quota,"Well within typical client HubSpot limits"
+,HubSpot Account Required,Client provides,Client provides,Client provides,Client provides,N/A,N/A,"✅ Clients use their own paid HubSpot subscriptions"
+,Your HubSpot Costs,$0,$0,$0,$0,N/A,N/A,"✅ $0 - You're using client accounts via OAuth API"
+,Client HubSpot Tier Needed,Starter+,Starter+,Professional+,Professional+,N/A,N/A,"Client needs API access (all paid tiers include this)"
+,MONTHLY COST (to you),$0,$0,$0,$0,N/A,N/A,"✅ Zero cost - clients bring their own HubSpot"
+
+SESSION STORAGE,,,,,,,,
+,Storage Type (current),In-memory,In-memory,In-memory,In-memory,N/A,N/A,"⚠️ No database - data lost on restart!"
+,Data Persistence (current),Temporary,Temporary,Temporary,Temporary,N/A,N/A,Resets on server restart
+,Geocoding Risk (current),HIGH,HIGH,HIGH,HIGH,N/A,N/A,"⚠️ Every restart re-geocodes ALL companies"
+,Recommended Solution,PostgreSQL,PostgreSQL,PostgreSQL,PostgreSQL,N/A,N/A,Essential for production use
+,MONTHLY COST (current),$0,$0,$0,$0,N/A,N/A,"⚠️ Hidden geocoding costs on restarts"
+
+AI MODELS,,,,,,,,
+,OpenAI API,Not used,Not used,Not used,Not used,N/A,N/A,No AI features in current app
+,Other AI Services,Not used,Not used,Not used,Not used,N/A,N/A,No costs
+,MONTHLY COST,$0,$0,$0,$0,N/A,N/A,Zero AI costs
+
+TOTAL MONTHLY COSTS - REPLIT HOSTING,,,,,,,,
+,Mapbox APIs (with database),$0,$0,$0,$0,N/A,N/A,"Free tier sufficient with PostgreSQL"
+,Replit Deployment,$1-3,$3-8,$8-15,$20-40,N/A,N/A,"Autoscale or Reserved VM with Core/Teams credits"
+,PostgreSQL Database,$5,$5-10,$10-15,$15-20,N/A,N/A,"Essential to prevent geocoding re-runs"
+,HubSpot (using client accounts),$0,$0,$0,$0,N/A,N/A,"✅ $0 - Clients bring their own HubSpot"
+,AI Services,$0,$0,$0,$0,N/A,N/A,Not used
+,TOTAL REPLIT (with database),$6-8,$8-18,$18-30,$35-60,N/A,N/A,"✅ Much lower without HubSpot seat costs!"
+
+TOTAL MONTHLY COSTS - GCP HOSTING,,,,,,,,
+,Mapbox APIs (with database),$0,$0,$0,$0,N/A,N/A,"Free tier sufficient with Cloud SQL"
+,GCP Cloud Run + SQL + Storage,$13-20,$21-30,$34-52,$60-83,N/A,N/A,"Includes Cloud Run, Cloud SQL, CDN, Secrets, Scheduler"
+,HubSpot (using client accounts),$0,$0,$0,$0,N/A,N/A,"✅ $0 - Clients bring their own HubSpot"
+,AI Services,$0,$0,$0,$0,N/A,N/A,Not used
+,TOTAL GCP (with database),$13-20,$21-30,$34-52,$60-83,N/A,N/A,"Higher than Replit but more enterprise-grade"
+
+HOSTING COMPARISON: REPLIT vs GCP,,,,,,,,
+,Platform,REPLIT,REPLIT,REPLIT,REPLIT,N/A,N/A,Current deployment platform
+,1 Rep Total,$6-8/month,N/A,N/A,N/A,N/A,N/A,"Replit: Simple, managed, low overhead"
+,5 Reps Total,$8-18/month,N/A,N/A,N/A,N/A,N/A,"Replit: Cost-effective for small teams"
+,10 Reps Total,$18-30/month,N/A,N/A,N/A,N/A,N/A,"Replit: Still competitive at this scale"
+,20 Reps Total,$35-60/month,N/A,N/A,N/A,N/A,N/A,"Replit: Good value with Reserved VM"
+,,,,,,,,
+,Platform,GCP,GCP,GCP,GCP,N/A,N/A,Enterprise alternative
+,1 Rep Total,$13-20/month,N/A,N/A,N/A,N/A,N/A,"GCP: 2-3x Replit cost, more control"
+,5 Reps Total,$21-30/month,N/A,N/A,N/A,N/A,N/A,"GCP: 2-3x Replit cost, better tooling"
+,10 Reps Total,$34-52/month,N/A,N/A,N/A,N/A,N/A,"GCP: ~2x Replit cost, enterprise features"
+,20 Reps Total,$60-83/month,N/A,N/A,N/A,N/A,N/A,"GCP: ~2x Replit cost, scalability & compliance"
+,,,,,,,,
+,Cost Difference,+$5-14/month,+$3-22/month,+$4-34/month,+$0-48/month,N/A,N/A,"GCP costs 1.5-2.5x Replit depending on team size"
+
+COST OPTIMIZATION TIPS,,,,,,,,
+,✅ TIP 1,"Clients bring their own HubSpot accounts - YOU PAY $0 for HubSpot!",,,,,,"Your app connects via OAuth to client accounts"
+,⚠️ TIP 2,ADD POSTGRESQL DATABASE IMMEDIATELY - prevents costly geocoding re-runs,,,,,,"Without DB, 500 companies = 500 geocoding calls per restart"
+,Tip 3,Use Replit Core plan ($20/mo individual) - includes $25 monthly credits,,,,,,"Core credits cover most Autoscale deployment costs"
+,Tip 4,Mapbox APIs remain free tier across all team sizes,,,,,,"Even at 20 reps, only using 1-2% of limits"
+,Tip 5,Choose Replit for simplicity & lower cost OR GCP for enterprise features,,,,,,"Replit = half the cost, GCP = better tooling/compliance"
+,Tip 6,Consider Reserved VM ($20-40/mo) for 20+ reps on Replit,,,,,,"Predictable costs vs usage-based Autoscale"
+,Tip 7,GCP provides better observability and multi-region deployment,,,,,,"Worth the premium if you need enterprise SLAs"
+
+CRITICAL WARNINGS,,,,,,,,
+,✅ CORRECTION,"HubSpot costs are $0 when using client OAuth accounts!",,,,,,"Previous estimate was WRONG - assumed you needed user seats"
+,⚠️ WARNING 1,"MemStorage = geocoding ALL companies on EVERY restart (500 companies = 500 API calls)",,,,,,"Solution: Add PostgreSQL database ($5-20/mo)"
+,⚠️ WARNING 2,"Without database, total cost is unpredictable due to restart-triggered geocoding",,,,,,"Could spike from $8/mo to $50+/mo unexpectedly"
+,ℹ️ NOTE,"Clients need paid HubSpot accounts (Starter+ tier minimum) with API access",,,,,,"But this is THEIR cost, not yours"
+
+WHEN TO CHOOSE REPLIT vs GCP,,,,,,,,
+,Choose REPLIT if:,Low budget ($6-60/mo total),,,,,,"Simple deployment, managed infrastructure, fast iteration"
+,Choose REPLIT if:,Small team (1-10 reps),,,,,,"Minimal DevOps overhead, focus on features"
+,Choose REPLIT if:,MVP or early-stage product,,,,,,"Get to market fast, iterate quickly"
+,Choose GCP if:,Enterprise clients require compliance (SOC2/HIPAA),,,,,,"GCP provides better audit trails and certifications"
+,Choose GCP if:,Need multi-region deployment,,,,,,"GCP has global infrastructure and CDN"
+,Choose GCP if:,Want advanced monitoring and observability,,,,,,"Cloud Logging, Monitoring, Trace, Profiler included"
+,Choose GCP if:,Team has existing GCP expertise,,,,,,"Leverage existing knowledge and tooling"
+,Choose GCP if:,Budget allows 2x cost for enterprise features,,,,,,"GCP: $13-113/mo vs Replit: $6-60/mo"
+
+MIGRATION COMPLEXITY ASSESSMENT,,,,,,,,
+,REPLIT → GCP Migration,Medium complexity,,,,,,"Requires containerization, CI/CD setup, OAuth refactor"
+,Development Time,2-4 weeks,,,,,,"Dockerfile, Cloud Build, database migration, testing"
+,Key Tasks,"1. Containerize app (Dockerfile), 2. Setup Cloud SQL + migrate schema, 3. Configure Cloud Run + secrets, 4. Replace Replit HubSpot connector with direct OAuth, 5. Setup CI/CD (GitHub Actions → Cloud Build), 6. Migrate session storage, 7. Configure Cloud CDN for static assets",,,,,,"Detailed migration checklist"
+,Technical Skills Required,"Docker, Terraform/gcloud CLI, PostgreSQL migrations, OAuth 2.0, CI/CD pipelines",,,,,,"Team needs DevOps experience"
+,Recommended Approach,Start on Replit → Migrate to GCP when revenue justifies it,,,,,,"Don't over-engineer early - Replit is perfect for MVP"
+
+RECOMMENDED PRODUCTION SETUP BY TEAM SIZE,,,,,,,,
+,,,,,,,,
+OPTION A: REPLIT HOSTING (RECOMMENDED FOR MVP),,,,,,,,
+,1 Rep,"PostgreSQL ($5) + Replit Autoscale ($1-3) + HubSpot Client Account ($0) = $6-8/month",,,,,,,"✅ BEST VALUE - Simple, managed, fast to deploy"
+,5 Reps,"PostgreSQL ($5-10) + Replit Autoscale ($3-8) + HubSpot Client Account ($0) = $8-18/month",,,,,,,"✅ COST-EFFECTIVE - Half the cost of GCP"
+,10 Reps,"PostgreSQL ($10-15) + Replit Autoscale ($8-15) + HubSpot Client Account ($0) = $18-30/month",,,,,,,"✅ STILL COMPETITIVE - Great for growing teams"
+,20 Reps,"PostgreSQL ($15-20) + Replit Reserved VM ($20-40) + HubSpot Client Account ($0) = $35-60/month",,,,,,,"✅ PREDICTABLE - Reserved VM for stable costs"
+,,,,,,,,
+OPTION B: GCP HOSTING (ENTERPRISE ALTERNATIVE),,,,,,,,
+,1 Rep,"Cloud SQL ($7-10) + Cloud Run ($5) + Storage/CDN/Secrets/Scheduler/CI/Logs ($1-5) + HubSpot Client ($0) = $13-20/month",,,,,,,"Enterprise features, 2x Replit cost"
+,5 Reps,"Cloud SQL ($10-15) + Cloud Run ($8) + Storage/CDN/Secrets/Scheduler/CI/Logs ($3-7) + HubSpot Client ($0) = $21-30/month",,,,,,,"Better monitoring, 2x Replit cost"
+,10 Reps,"Cloud SQL ($15-25) + Cloud Run ($12) + Storage/CDN/Secrets/Scheduler/CI/Logs ($7-15) + HubSpot Client ($0) = $34-52/month",,,,,,,"Compliance-ready, 2x Replit cost"
+,20 Reps,"Cloud SQL ($25-35) + Cloud Run ($20) + Storage/CDN/Secrets/Scheduler/CI/Logs ($15-28) + HubSpot Client ($0) = $60-83/month",,,,,,,"Multi-region capable, 2x Replit cost"
+,,,,,,,,
+COST SAVINGS SUMMARY,,,,,,,,
+,"✅ Using client HubSpot accounts saves you $0-270/month!",,,,,,"Previous estimate assumed YOU paid for user seats - WRONG!"
+,"Original estimate (with HubSpot seats)",$5-8/month,$53-63/month,$138-150/month,$305-330/month,,,,"OLD - Assumed you needed HubSpot Starter plan"
+,"Corrected estimate (client accounts)",$6-8/month,$8-18/month,$18-30/month,$35-60/month,,,,"NEW - Clients bring their own HubSpot ✅"
+,"Monthly savings",$0,$35-55/month,$110-132/month,$245-295/month,,,,"HUGE savings at scale by using client accounts!"

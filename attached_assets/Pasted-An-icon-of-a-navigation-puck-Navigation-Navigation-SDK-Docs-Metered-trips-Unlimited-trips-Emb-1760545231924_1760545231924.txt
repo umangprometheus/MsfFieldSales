@@ -1,0 +1,383 @@
+An icon of a navigation puck.
+Navigation
+Navigation SDK
+Docs
+Metered trips
+Unlimited trips
+Embed navigation with routing and guidance directly into your app. Pay a lower fee for each monthly active user (MAU) of your app plus a fee for each trip your users take.
+
+Detailed pricing
+Monthly active users
+
+0
+100
+5000
+10k
+20k
+Monthly trips
+
+0
+1000
+50k
+100k
+200k
+100
+Monthly active users
+1,000
+Monthly trips
+Free
+Directions API
+Docs
+Calculate optimal driving, walking, and cycling routes that take traffic and incidents into account.
+
+Detailed pricing
+Monthly requests
+
+0
+100k
+500k
+1M
+5M
+100,000
+Monthly requests
+Free
+Map Matching API
+Docs
+Snap fuzzy, inaccurate traces from a GPS unit or a phone to the road and path network. This produces clean paths that can be displayed on a map or used for analysis.
+
+Detailed pricing
+Monthly requests
+
+0
+100k
+500k
+1M
+5M
+100,000
+Monthly requests
+Free
+Optimization API
+Docs
+Plan a multi-stop driving, bicycling, and walking route with stops in the most efficient order.
+
+Detailed pricing
+Monthly requests
+
+0
+100k
+500k
+1M
+5M
+100,000
+Monthly requests
+Free
+Matrix API
+Docs
+Check the reachability of coordinates from each other, filter points by travel time, or run your own algorithms to solve optimization problems.
+
+Detailed pricing
+Monthly matrix elements
+
+0
+100k
+500k
+1M
+5M
+100,000
+Monthly matrix elements
+Free
+Isochrone API
+Docs
+Compute areas that are reachable within a specified amount of time from a location and get the reachable regions as contours of polygons or lines you can display on a map.
+
+Detailed pricing
+Monthly requests
+
+0
+100k
+500k
+1M
+5M
+100,000
+Monthly requests
+Free
+Electronic Horizon
+(Public Preview)
+Docs
+Retrieve map data along the probable path of a vehicle to anticipate conditions ahead.
+
+Read blog post ›
+Free via Navigation SDK
+
+Monthly cost
+An icon of a map.
+Maps
+Maps SDKs for Mobile
+Docs
+The Mobile Map SDKs power the most compelling map experiences for Android and iOS with dynamic rendering capabilities, powerful map controls and a modern developer experience.
+
+Detailed pricing
+Monthly active users
+
+0
+25k
+125k
+250k
+1.25M
+25,000
+Monthly active users
+Free
+Mapbox GL JS
+Docs
+Map Loads for Web
+Map Seats for Web
+Mapbox GL JS is a JavaScript library for vector maps on the Web. Its performance, real-time styling, and interactivity features set the bar for anyone building fast, immersive maps on the web. A map load occurs whenever a Map object is initialized, offering users unlimited interactivity with your web map.
+
+Detailed pricing
+Monthly loads
+
+0
+50k
+100k
+200k
+1M
+50,000
+Monthly loads
+Free
+Static Images API
+Docs
+Generate static map images from Mapbox styles. These images can be displayed on web and mobile devices without the aid of a mapping library or API.
+
+Detailed pricing
+Monthly requests
+
+0
+50k
+500k
+1M
+5M
+50,000
+Monthly requests
+Free
+Tilequery API
+Docs
+Retrieve data about specific features from a vector tileset, based on a given latitude and longitude.
+
+Detailed pricing
+Monthly requests
+
+0
+100k
+500k
+1M
+5M
+100,000
+Monthly requests
+Free
+Vector Tiles API
+Docs
+Retrieve vector tiles generated from Mapbox-hosted vector tilesets.
+
+Detailed pricing
+Monthly tile requests
+
+0
+200k
+2M
+4M
+20M
+200,000
+Monthly tile requests
+Free
+Static Tiles API
+Docs
+Retrieve raster tiles generated from Mapbox styles. Well-suited for maps with limited interactivity or use on devices that do not support WebGL.
+
+Detailed pricing
+Monthly tile requests
+
+0
+200k
+2M
+4M
+20M
+200,000
+Monthly tile requests
+Free
+Raster Tiles API
+Docs
+Retrieve raster tiles generated from satellite imagery tilesets and tilesets generated from raster data uploaded to Mapbox.
+
+Detailed pricing
+Monthly tile requests
+
+0
+750k
+2M
+4M
+20M
+750,000
+Monthly tile requests
+Free
+Japan Weather Layers
+Docs
+Japan weather layers are weather tilesets covering Japan and the immediate surroundings, sourced from the Japan Meteorological Agency (JMA). The tilesets are served as raster or vector tiles.
+
+Detailed pricing
+Monthly tile requests
+
+0
+100k
+4M
+20M
+99,000
+Monthly tile requests
+Free
+Mapbox Geofencing
+(Public Preview)
+Docs
+Mapbox Geofencing for iOS and Android makes it simpler to configure and manage geofenced areas and monitor when a device enters, exits, or remains within defined boundaries.
+
+Detailed pricing
+Monthly active users
+
+0
+25k
+125k
+250k
+1.25M
+25,000
+Monthly active users
+Free
+Monthly cost
+An icon of a pin.
+Search
+Search Box API - Sessions
+Docs
+Create interactive search experiences for addresses, places, and points of interest. Transactions are billed on a per-session basis.
+
+Detailed pricing
+Monthly sessions
+
+0
+500
+100k
+500k
+1M
+500
+Monthly sessions
+Free
+Search Box API - Requests
+Docs
+Get a list of POIs for a given category (e.g., coffee shops around me), or get addresses and POIs around a given coordinate (e,g, what is around 33.9416° N, 118.4085° W).
+
+Detailed pricing
+Monthly requests
+
+0
+50k
+500k
+1M
+5M
+50,000
+Monthly requests
+Free
+Temporary Geocoding API
+Docs
+Find places, addresses, or points of interest by address, name, or with geographic coordinates.
+
+Detailed pricing
+Monthly requests
+
+0
+100k
+500k
+1M
+5M
+100,000
+Monthly requests
+Free
+Permanent Geocoding API
+Docs
+Permanently store forward and reverse search results, make batch geocoding requests, or both. Results from the Permanent Geocoding API are only available for your own personal or business use, and cannot be used for distribution or sublicense.
+
+Detailed pricing
+Monthly requests
+
+0
+250k
+500k
+750k
+1M
+0
+Monthly requests
+Free
+Address Autofill
+Docs
+Autofill takes forward geocoding and automatically separates the address components to be used to quickly fill out a form, and returns a mini-map. Transactions are billed on a per session basis.
+
+Detailed pricing
+Monthly sessions
+
+0
+1k
+25k
+100k
+500k
+1,000
+Monthly sessions
+Free
+An icon of tiles.
+Tilesets
+New
+Update just a portion of your data without a time-consuming full tileset refresh.
+Get started
+Monthly cost
+Tileset Processing
+Docs
+Tileset jobs are billed per processed megabyte and per processed compute unit (CUs) for each successfully published tileset. CUs represent the compute resources required to process a tileset job.
+
+Detailed pricing
+Monthly MB
+
+0
+10k
+50k
+100k
+1M
+Monthly CUs
+
+0
+20
+1k
+5k
+10k
+10,000
+Monthly MB
+20
+Monthly CUs
+Free
+Tileset Hosting
+Docs
+The number of custom tilesets multiplied by the days per month you host each tileset. For example, 3 tilesets hosted for 15 days is 45 tileset hosting days.
+
+Detailed pricing
+Monthly hosted tilesets
+
+0
+25
+100
+1k
+10k
+20k
+Days hosted per month
+
+0
+10
+20
+30
+750
+Monthly tileset hosting days
+30
+Days hosted per month
+Free
