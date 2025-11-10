@@ -115,8 +115,44 @@ export async function optimizeRoute(
   totalEtaMin: number;
   routeGeometry: Array<{ lat: number; lng: number }>;
 }> {
+  // Fallback to simple optimization if no Mapbox token
   if (!MAPBOX_TOKEN) {
-    throw new Error("MAPBOX_TOKEN not configured");
+    console.log('[Mapbox] No token - using simple greedy algorithm');
+    const { calculateDistanceMiles } = await import('./geo');
+    
+    const optimizedOrder = greedyOptimize(coordinates, origin);
+    const waypoints: Array<{ waypointIndex: number; distanceFromPrevMi: number | null; etaFromPrevMin: number | null; }> = [];
+    
+    let totalDistMi = 0;
+    let prev = origin || coordinates[optimizedOrder[0]];
+    
+    for (let i = 0; i < optimizedOrder.length; i++) {
+      const idx = optimizedOrder[i];
+      const coord = coordinates[idx];
+      const distMi = calculateDistanceMiles(prev.lat, prev.lng, coord.lat, coord.lng);
+      const etaMin = distMi * 2; // Rough estimate: 30 mph average = 2 min per mile
+      
+      waypoints.push({
+        waypointIndex: idx,
+        distanceFromPrevMi: distMi,
+        etaFromPrevMin: etaMin,
+      });
+      
+      totalDistMi += distMi;
+      prev = coord;
+    }
+    
+    const totalEtaMin = totalDistMi * 2;
+    const routeGeometry = origin 
+      ? [origin, ...optimizedOrder.map(idx => coordinates[idx])]
+      : optimizedOrder.map(idx => coordinates[idx]);
+    
+    return {
+      waypoints,
+      totalDistMi,
+      totalEtaMin,
+      routeGeometry,
+    };
   }
 
   if (coordinates.length < 2) {

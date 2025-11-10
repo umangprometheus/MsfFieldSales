@@ -6,6 +6,12 @@ import type { InsertCompany } from "@shared/schema";
 
 // Sync companies from HubSpot to local cache
 export async function syncCompanies(ownerId?: string): Promise<number> {
+  // Skip sync if HubSpot is not configured
+  if (!process.env.HUBSPOT_API_KEY) {
+    console.log("[Sync] Skipping HubSpot sync - no API key configured (using demo data)");
+    return 0;
+  }
+  
   console.log(`[Sync] Starting company sync${ownerId ? ` for owner ${ownerId}` : " (all companies)"}...`);
 
   try {
