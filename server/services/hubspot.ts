@@ -69,6 +69,12 @@ export async function createFieldVisitCheckIn(
   note: string | null,
   timestamp: string
 ) {
+  // Skip if HubSpot is not configured
+  if (!process.env.HUBSPOT_API_KEY) {
+    console.log("[HubSpot] Skipping field visit logging - no API key configured");
+    return null;
+  }
+  
   const client = getHubSpotClient();
 
   try {
