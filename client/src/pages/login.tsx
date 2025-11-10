@@ -30,8 +30,8 @@ export default function LoginPage() {
       const response = await apiRequest("POST", "/api/auth/login", data);
       const userData = await response.json();
 
-      // Invalidate auth cache to trigger re-check
-      await queryClient.invalidateQueries({ queryKey: ["/api/auth/me"] });
+      // Set the user data directly in cache to avoid race condition
+      queryClient.setQueryData(["/api/auth/me"], userData);
 
       toast({
         title: "Welcome back!",
