@@ -9,14 +9,17 @@ interface LocationSearchProps {
   className?: string;
 }
 
-export default function LocationSearch({ onLocationSelect, className = "" }: LocationSearchProps) {
+export default function LocationSearch({
+  onLocationSelect,
+  className = "",
+}: LocationSearchProps) {
   const [searchValue, setSearchValue] = useState("");
   const [isGettingLocation, setIsGettingLocation] = useState(false);
   const { toast } = useToast();
 
   const handleUseGPS = () => {
     setIsGettingLocation(true);
-    
+
     if (!navigator.geolocation) {
       toast({
         variant: "destructive",
@@ -45,18 +48,19 @@ export default function LocationSearch({ onLocationSelect, className = "" }: Loc
         });
         setIsGettingLocation(false);
       },
-      { enableHighAccuracy: true, timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 10000 },
     );
   };
 
   const handleSearch = async () => {
     if (!searchValue.trim()) return;
+    let token = import.meta.env.VITE_MAPBOX_TOKEN || "";
 
     try {
       const response = await fetch(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
-          searchValue
-        )}.json?access_token=${import.meta.env.VITE_MAPBOX_TOKEN}&limit=1`
+          searchValue,
+        )}.json?access_token=${token}&limit=1`,
       );
       const data = await response.json();
 
@@ -98,8 +102,8 @@ export default function LocationSearch({ onLocationSelect, className = "" }: Loc
             data-testid="input-location-search"
           />
         </div>
-        <Button 
-          onClick={handleSearch} 
+        <Button
+          onClick={handleSearch}
           variant="secondary"
           data-testid="button-search-location"
         >
